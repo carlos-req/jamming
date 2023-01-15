@@ -25,6 +25,7 @@ export default class App extends React.Component {
     this.removeTrack=this.removeTrack.bind(this);
     this.updatePlaylistName=this.updatePlaylistName.bind(this);
     this.savePlaylist= this.savePlaylist.bind(this);
+    this.search=this.search.bind(this);
   }
   // Method to add a song to the playlist state
   addTrack(track) {
@@ -59,12 +60,16 @@ export default class App extends React.Component {
     let uriTrackUpdater= this.state.playlistTracks.forEach(track => trackUris.push(track.uri));
   }
 
+  search(term){
+    console.log(term);
+  }
+
   render() {
     return(
         <div>
           <h1>Ja<span className="highlight">mmm</span>ing</h1>
           <div className="App">
-            <SearchBar />
+            <SearchBar onSearch={this.search}/>
             <div className="App-playlist">
               <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack}/>
               <Playlist playlistName={this.state.playlistName}
